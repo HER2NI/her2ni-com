@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  width="1024"
+  height="1024"
+  viewBox="0 0 1024 1024"
+  xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background -->
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="20%" r="70%">
+      <stop offset="0%"  stop-color="#111827"/>
+      <stop offset="55%" stop-color="#050814"/>
+      <stop offset="100%" stop-color="#020309"/>
+    </radialGradient>
+
+    <!-- Circle glow -->
+    <radialGradient id="circleGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#4fd1c5" stop-opacity="0.3"/>
+      <stop offset="45%"  stop-color="#22c55e" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#111827" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Triangle stroke gradient -->
+    <linearGradient id="triGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#4fd1c5"/>
+      <stop offset="50%"  stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+
+    <!-- Center node -->
+    <radialGradient id="nodeGrad" cx="30%" cy="30%" r="80%">
+      <stop offset="0%"   stop-color="#f9fafb"/>
+      <stop offset="35%"  stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#bgGrad)" />
+
+  <!-- Soft glow behind circle -->
+  <circle
+    cx="512"
+    cy="512"
+    r="420"
+    fill="url(#circleGrad)"
+    opacity="0.7"
+  />
+
+  <!-- Outer circle (protocol boundary) -->
+  <circle
+    cx="512"
+    cy="512"
+    r="420"
+    fill="none"
+    stroke="#1f2937"
+    stroke-width="18"
+  />
+
+  <!-- Slight inner circle ring for depth -->
+  <circle
+    cx="512"
+    cy="512"
+    r="360"
+    fill="none"
+    stroke="#4b5563"
+    stroke-width="6"
+    opacity="0.6"
+  />
+
+  <!-- Equilateral triangle INSET from circle -->
+  <!-- Center = (512,512), radius for vertices = 320 -->
+  <!-- Top vertex at 270°, others at 30° and 150° -->
+  <polygon
+    points="
+      512,192
+      789.12,672
+      234.88,672
+    "
+    fill="none"
+    stroke="url(#triGrad)"
+    stroke-width="24"
+    stroke-linejoin="round"
+  />
+
+  <!-- Center node (HER2NI coherence node) -->
+  <circle
+    cx="512"
+    cy="512"
+    r="44"
+    fill="url(#nodeGrad)"
+    stroke="#e5e7eb"
+    stroke-width="4"
+  />
+
+  <!-- Soft node glow -->
+  <circle
+    cx="512"
+    cy="512"
+    r="80"
+    fill="none"
+    stroke="#22c55e"
+    stroke-width="8"
+    opacity="0.25"
+  />
+
+</svg>
