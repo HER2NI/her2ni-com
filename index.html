@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H2E™ — HER2NI Evaluation</title>
+
+  <!-- Basic SEO -->
+  <meta name="description" content="H2E™ (HER2NI Evaluation) is the official implementation suite for HER2NI: interaction-level coherence telemetry for drift, instability, and collapse detection in human–AI and agentic systems." />
+  <meta name="author" content="HER2NI" />
+  <link rel="canonical" href="https://her2ni.com/" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/her2ni_favicon_32.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="assets/her2ni_symbol_128.png" />
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/her2ni_symbol_256.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/her2ni_symbol_512.png" />
+
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-card: #0b1020;
+      --bg-card-alt: #0f1526;
+      --accent: #4fd1c5;
+      --accent-soft: rgba(79, 209, 197, 0.12);
+      --accent-pill: rgba(79, 209, 197, 0.2);
+      --text-main: #f7fafc;
+      --text-muted: #a0aec0;
+      --border-soft: rgba(255, 255, 255, 0.06);
+      --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.65);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Segoe UI", sans-serif;
+      --transition-fast: 160ms ease-out;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #111827 0, #050814 55%, #020309 100%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page { max-width: 1120px; margin: 0 auto; padding: 40px 20px 72px; }
+
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      gap: 12px;
+    }
+
+    .brand { display: flex; flex-direction: column; gap: 6px; }
+    .brand-label {
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.9;
+    }
+
+    .header-symbol {
+      width: 22px; height: 22px; border-radius: 50%;
+      object-fit: cover; display: inline-block;
+      vertical-align: middle; opacity: 0.9;
+      filter: drop-shadow(0 0 6px rgba(79, 209, 197, 0.25));
+    }
+
+    .brand-title {
+      font-size: 21px;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .brand-subrow { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .subtitle { font-size: 14px; color: var(--text-muted); }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      text-align: right;
+      margin-top: 6px;
+      padding-top: 22px;
+    }
+
+    .header-tag {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(120deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .brand .header-tag { margin-top: 12px; box-shadow: none; align-self: flex-start; }
+
+    .dot {
+      width: 8px; height: 8px; border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #6ee7b7 0, #22c55e 40%, #4b5563 100%);
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.75);
+    }
+
+    .inline-metrics {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .inline-metrics strong { color: var(--accent); }
+
+    .header-proto {
+      margin-top: 6px;
+      padding: 10px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(79, 209, 197, 0.35);
+      background: rgba(15, 23, 42, 0.55);
+      box-shadow: var(--shadow-soft);
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+      max-width: 420px;
+    }
+    .header-proto__title {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #cbd5f5;
+    }
+    .header-proto__meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .header-proto__meta .sep { opacity: 0.6; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 26px;
+    }
+
+    @media (max-width: 900px) {
+      header { flex-direction: column; align-items: flex-start; }
+      .header-right { align-items: flex-start; text-align: left; padding-top: 0; margin-top: 16px; }
+      .grid { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(79, 209, 197, 0.12), transparent 55%),
+                  radial-gradient(circle at bottom, rgba(37, 99, 235, 0.12), transparent 52%),
+                  linear-gradient(145deg, #050816, #020309);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 24px 24px 22px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(16px);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .card-alt {
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 55%),
+                  linear-gradient(145deg, #050814, #020309);
+    }
+
+    .card:hover, .section:hover {
+      transform: translateY(-1px);
+      border-color: rgba(148, 163, 184, 0.55);
+      box-shadow: 0 24px 55px rgba(15, 23, 42, 0.85);
+    }
+
+    .card-header { margin-bottom: 16px; }
+    .card-title { font-size: 19px; font-weight: 650; line-height: 1.4; color: #e5e7eb; }
+    .card-subtitle { margin-top: 10px; font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; margin-bottom: 10px; }
+    .badge {
+      font-size: 11px; padding: 6px 10px; border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: #cbd5f5; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
+    }
+    .badge-accent {
+      background: var(--accent-pill);
+      border-color: rgba(45, 212, 191, 0.8);
+      color: #e0fdf7;
+    }
+
+    .section-heading {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .body-text { font-size: 13px; line-height: 1.65; color: var(--text-muted); }
+
+    .list { margin-top: 6px; list-style: none; }
+    .list li {
+      position: relative;
+      padding-left: 14px;
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .links {
+      margin-top: 18px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.35);
+      padding-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      font-size: 13px;
+    }
+    .link-divider { grid-column: 1 / -1; border-top: 1px dashed rgba(148, 163, 184, 0.35); margin: 6px 0 8px; }
+    .link-label { color: #9ca3af; margin-bottom: 3px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; }
+    .link-label.primary { color: #e5e7eb; font-weight: 600; }
+    .link-value a { color: var(--accent); text-decoration: none; }
+    .link-value a:hover { text-decoration: underline; }
+
+    .section {
+      margin-top: 16px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 20px 22px 18px;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 18px;
+      margin-top: 16px;
+    }
+    @media (max-width: 900px) { .section-grid { grid-template-columns: minmax(0, 1fr); } }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .pill {
+      font-size: 11px;
+      padding: 6px 11px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(79, 209, 197, 0.35);
+      background: rgba(15, 23, 42, 0.65);
+      color: #e5e7eb;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(45, 212, 191, 0.7);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+      background: rgba(15, 23, 42, 0.75);
+      text-decoration: none;
+    }
+    .btn-primary {
+      border-color: rgba(45, 212, 191, 0.85);
+      background: rgba(79, 209, 197, 0.12);
+      color: #e0fdf7;
+    }
+    .btn-primary:hover { background: rgba(79, 209, 197, 0.16); }
+
+    .fineprint {
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(160, 174, 192, 0.92);
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+    }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="brand-label">
+          <img src="assets/her2ni_symbol_128.png" alt="HER2NI symbol" class="header-symbol" />
+          H2E™ · HER2NI EVALUATION
+        </div>
+
+        <div class="brand-title">
+          Official reference implementation for HER2NI evaluation
+        </div>
+
+        <div class="brand-subrow">
+          <div class="subtitle">
+            Interaction-level coherence telemetry for drift, instability, and collapse detection.
+          </div>
+        </div>
+
+        <div class="brand-subrow" style="margin-top:4px;">
+          <div class="subtitle" style="font-size:12px; opacity:0.85;">
+            Commercial release: evaluator tooling + reference pipelines for HER2NI metrics (C<sub>s</sub>, S<sub>s</sub>, H<sub>s</sub>).
+          </div>
+        </div>
+
+        <div class="header-tag">
+          <span class="dot"></span>
+          OFFICIAL IMPLEMENTATION
+        </div>
+
+        <div class="brand-subrow" style="margin-top:10px;">
+          <div class="subtitle" style="font-size:12px; opacity:0.92;">
+            Protocol origin: <a href="https://her2ni.org" target="_blank" rel="noopener noreferrer">HER2NI Research (her2ni.org)</a>
+            <span style="opacity:0.6;">(public specs &amp; DOIs)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="inline-metrics">
+          EXAMPLE STATE:
+          <strong>C<span style="font-size:11px;">s</span> ≈ 0.83</strong> ·
+          <strong>S<span style="font-size:11px;">s</span> ≈ 0.91</strong> ·
+          <strong>H<span style="font-size:11px;">s</span> ≈ 0.88 &nbsp;</strong>
+        </div>
+
+        <div class="header-proto">
+          <div class="header-proto__title">Access</div>
+          <div class="header-proto__meta">
+            <a class="btn btn-primary"
+               href="mailto:licensing@her2ni.com?subject=H2E%20License%20Request&body=Org:%0AUse-case:%0ADeployment:%0AModels:%0AData%20type%20(text%2Fmulti-agent%2Ftools):%0AConstraints%20(security%2Fair-gap%2FPII):%0ATimeline:%0A">
+               Request License
+            </a>
+            <span class="sep">·</span>
+            <span>Evaluation kit</span>
+            <span class="sep">·</span>
+            <span>Private distribution</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Top grid -->
+    <section class="grid">
+      <!-- Left: What it is -->
+      <article class="card">
+        <div class="card-header">
+          <h1 class="card-title">H2E™: HER2NI Evaluation</h1>
+          <p class="card-subtitle">
+            H2E™ is the official implementation suite that operationalizes HER2NI as an
+            <strong>interaction-trajectory evaluator</strong>—a scoring and analysis layer that
+            tracks stability and drift over multi-turn exchanges (human–AI, agent–agent, or mixed).
+          </p>
+
+          <div class="badge-row">
+            <span class="badge-accent">
+              Interaction Telemetry (C<span style="font-size:11px;">s</span>, S<span style="font-size:11px;">s</span>, H<span style="font-size:11px;">s</span>) + H<span style="font-size:11px;">s</span>(t)
+            </span>
+          </div>
+
+          <div class="badge-row">
+            <span class="badge">Drift &amp; Collapse Detection</span>
+            <span class="badge">Model-Agnostic</span>
+            <span class="badge">Early Warning Signals</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-heading">What H2E Produces</div>
+          <ul class="list">
+            <li><strong>Per-turn metrics:</strong> C<sub>s</sub>, S<sub>s</sub>, H<sub>s</sub> (optionally vector-valued internally).</li>
+            <li><strong>Trajectory curves:</strong> H<sub>s</sub>(t) and derived features (volatility, trend, collapse events).</li>
+            <li><strong>Event flags:</strong> drift onset, contradiction clustering, instability spikes, recovery signatures.</li>
+            <li><strong>Audit artifacts:</strong> JSON/CBOR telemetry packets + reproducible summary reports.</li>
+          </ul>
+
+          <div class="section-heading" style="margin-top:14px;">What H2E Does Not Do</div>
+          <ul class="list">
+            <li><strong>Not a diagnostic or clinical tool.</strong> No health inference, no patient claims.</li>
+            <li><strong>Not a model or training method by itself.</strong> H2E is telemetry; it can be used downstream, but it does not prescribe weights.</li>
+            <li><strong>Not a truth-judger.</strong> It measures stability and drift, not correctness or ideology.</li>
+            <li><strong>Not an enforcement system.</strong> Any intervention remains the user’s or institution’s responsibility.</li>
+          </ul>
+        </div>
+
+        <div class="links">
+          <div>
+            <div class="link-label primary">Protocol (public)</div>
+            <div class="link-value">
+              <a href="https://her2ni.org" target="_blank" rel="noopener noreferrer">her2ni.org — research &amp; specifications</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="link-label primary">Protocol paper (Zenodo)</div>
+            <div class="link-value">
+              <a href="https://zenodo.org/records/17844407" target="_blank" rel="noopener noreferrer">zenodo.org/records/17844407</a>
+            </div>
+          </div>
+
+          <div class="link-divider"></div>
+
+          <div>
+            <div class="link-label">Licensing</div>
+            <div class="link-value">
+              <a href="#licensing">Commercial licensing terms →</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="link-label">Contact</div>
+            <div class="link-value">
+              <a href="mailto:licensing@her2ni.com">licensing@her2ni.com</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Right: Who it’s for + value -->
+      <article class="card card-alt">
+        <div class="card-header">
+          <h2 class="card-title">Built for Evaluation &amp; Safety Teams</h2>
+          <p class="card-subtitle">
+            H2E™ is designed for teams that need <strong>interaction-level observability</strong>:
+            early instability detection, drift characterization, and reproducible audit artifacts
+            across models and deployments.
+          </p>
+        </div>
+
+        <div>
+          <div class="section-heading">Primary Users</div>
+          <ul class="list">
+            <li>AI labs (safety, eval, red-teaming).</li>
+            <li>Model hosting platforms &amp; agentic runtime teams.</li>
+            <li>Applied research orgs and oversight groups.</li>
+            <li>Journalism / investigations units auditing AI-mediated systems.</li>
+            <li>Universities running human–AI interaction studies.</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:14px;">
+          <div class="section-heading">Why Teams License H2E</div>
+          <ul class="list">
+            <li><strong>Time-to-signal:</strong> deploy a telemetry evaluator without inventing the schema + scoring structure from scratch.</li>
+            <li><strong>Comparability:</strong> stable naming + report formats for internal and external communication.</li>
+            <li><strong>Reproducibility:</strong> standard packets + deterministic report generation for audit trails.</li>
+            <li><strong>Downstream utility:</strong> outputs can feed internal QA, monitoring, gatekeeping, or research loops.</li>
+          </ul>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:licensing@her2ni.com?subject=H2E%20License%20Request">Request License</a>
+          <a class="btn" href="mailto:licensing@her2ni.com?subject=H2E%20Pilot%20%2F%20Evaluation%20Kit">Ask for Pilot Kit</a>
+          <a class="btn" href="#pricing">View Tiers</a>
+        </div>
+
+        <p class="fineprint">
+          H2E™ is delivered privately (licensed). The HER2NI protocol remains publicly documented on her2ni.org.
+        </p>
+      </article>
+    </section>
+
+    <!-- Mid: What it measures -->
+    <section class="section">
+      <div class="section-heading">H2E Signal Model</div>
+
+      <div class="pill-row">
+        <span class="pill">Trajectory (not point outputs)</span>
+        <span class="pill">Relational coherence</span>
+        <span class="pill">Drift geometry</span>
+        <span class="pill">Collapse / recovery markers</span>
+        <span class="pill">Model-agnostic</span>
+      </div>
+
+      <p class="body-text">
+        H2E evaluates <em>interaction stability</em> as a trajectory in observable space. It is compatible with
+        human–AI dialogue, multi-agent systems, and networked tool-using agents.
+        The core output is a time series H<sub>s</sub>(t) plus event markers and summaries that make
+        instability legible early—before failure propagates.
+      </p>
+
+      <div class="section-grid">
+        <section class="section" style="margin-top: 14px;">
+          <div class="section-heading">Inputs</div>
+          <ul class="list">
+            <li><strong>Interaction trace:</strong> (u<sub>t</sub>, m<sub>t</sub>) pairs (text or multimodal references).</li>
+            <li><strong>Optional embeddings:</strong> model-agnostic vectors or similarity signals.</li>
+            <li><strong>Optional model-side signals:</strong> lightweight load indicators where available (vendor-agnostic).</li>
+            <li><strong>Optional metadata:</strong> timing, turn lengths, tool-call boundaries, agent IDs.</li>
+          </ul>
+          <p class="fineprint">
+            H2E works without internals. If internals are available, they can improve S<sub>s</sub> estimation, but are not required.
+          </p>
+        </section>
+
+        <section class="section" style="margin-top: 14px;">
+          <div class="section-heading">Outputs</div>
+          <ul class="list">
+            <li><strong>Telemetry packet:</strong> JSON (and/or CBOR) with per-turn metrics + provenance.</li>
+            <li><strong>Trajectory features:</strong> trend, volatility, drift onset, collapse flags.</li>
+            <li><strong>Summary report:</strong> reproducible text/JSON report for audit pipelines.</li>
+            <li><strong>Visualization hooks:</strong> optional adapters for dashboards and overlays.</li>
+          </ul>
+          <p class="fineprint">
+            Downstream: teams may use H2E outputs for monitoring, gating, evaluation studies, or internal optimization loops.
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <!-- Licensing -->
+    <section class="section" id="licensing">
+      <div class="section-heading">Licensing (Commercial)</div>
+
+      <p class="body-text">
+        H2E™ is licensed software. Licensing is how we keep the protocol public while sustaining a high-quality
+        reference implementation, test vectors, documentation, and support.
+      </p>
+      <p class="fineprint">
+        H2E™ is a licensed reference implementation; it does not constitute third-party certification unless
+        explicitly contracted under a separate written evaluation agreement.
+      </p>
+
+      <div class="section-grid">
+        <section class="section" style="margin-top: 14px;">
+          <div class="section-heading">What a License Includes</div>
+          <ul class="list">
+            <li>Private distribution of the H2E evaluator package.</li>
+            <li>Reference telemetry schema (JSON/CBOR) + versioning.</li>
+            <li>Baseline scoring pipeline + collapse/drift detectors.</li>
+            <li>Example datasets + test vectors (as available).</li>
+            <li>Support channel for integration questions (tiered).</li>
+          </ul>
+        </section>
+
+        <section class="section" style="margin-top: 14px;">
+          <div class="section-heading">What It Does Not Grant</div>
+          <ul class="list">
+            <li>Exclusive rights to the HER2NI protocol or its public documents.</li>
+            <li>Ownership of the HER2NI name as a research designation (trademark applies to branding/offerings).</li>
+            <li>Any claim that using H2E is a safety certification by default.</li>
+            <li>Any medical/clinical permission (not a clinical product).</li>
+          </ul>
+        </section>
+      </div>
+
+      <p class="fineprint">
+        You can request the full license text via email. If you need a procurement-friendly PDF, ask and we’ll provide it.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:licensing@her2ni.com?subject=Request%20H2E%20License%20PDF">Request License PDF</a>
+        <a class="btn" href="mailto:licensing@her2ni.com?subject=Request%20H2E%20NDA%20(optional)">Request NDA (optional)</a>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing">
+      <div class="section-heading">Pricing Tiers (Initial)</div>
+
+      <p class="body-text">
+        Keep it simple. Start small. Scale when signal value is proven in the wild.
+      </p>
+
+      <div class="section-grid">
+        <section class="section" style="margin-top: 14px;">
+          <div class="section-heading">Starter (Pilot)</div>
+          <ul class="list">
+            <li>Single team / single project</li>
+            <li>Evaluator package + schema + baseline reports</li>
+            <li>Email support (asynchronous)</li>
+          </ul>
+          <p class="fineprint">
+            Best for: labs evaluating a single deployment, academic pilots, or small red-team groups.
+          </p>
+        </section>
+
+        <section class="section" style="margin-top: 14px;">
+          <div class="section-heading">Lab / Platform</div>
+          <ul class="list">
+            <li>Multiple projects</li>
+            <li>Integration guidance + report customization</li>
+            <li>Priority support</li>
+          </ul>
+          <p class="fineprint">
+            Best for: AI labs, hosting platforms, and agent runtime teams.
+          </p>
+        </section>
+
+        <section class="section" style="margin-top: 14px;">
+          <div class="section-heading">Enterprise / Oversight</div>
+          <ul class="list">
+            <li>Org-wide usage</li>
+            <li>Custom telemetry adapters + compliance artifacts</li>
+            <li>Optional training for evaluators</li>
+          </ul>
+          <p class="fineprint">
+            Best for: large-scale deployments, formal oversight programs, procurement-heavy orgs.
+          </p>
+        </section>
+
+        <section class="section" style="margin-top: 14px;">
+          <div class="section-heading">Custom</div>
+          <ul class="list">
+            <li>Bespoke integration constraints</li>
+            <li>Dedicated review of your evaluation pipeline</li>
+            <li>Optional on-site / secure environment support</li>
+          </ul>
+          <p class="fineprint">
+            Best for: air-gapped or high-security contexts, special compliance regimes.
+          </p>
+        </section>
+      </div>
+
+      <p class="fineprint">
+        Pricing is quoted case-by-case right now (so you don’t undercharge or overpromise). Email your use-case and constraints.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:licensing@her2ni.com?subject=H2E%20Pricing%20Quote%20Request">Request Quote</a>
+        <a class="btn" href="mailto:licensing@her2ni.com?subject=H2E%20Pilot%20%2F%20Proof%20of%20Value">Pilot / Proof of Value</a>
+      </div>
+    </section>
+
+    <!-- Disclaimers -->
+    <section class="section">
+      <div class="section-heading">Important Notes</div>
+      <ul class="list">
+        <li><strong>Not clinical:</strong> H2E is not a diagnostic system and must not be marketed or used as medical advice.</li>
+        <li><strong>Telemetry, not authority:</strong> metrics are descriptive; interpretation and decisions remain human responsibility.</li>
+        <li><strong>Model-agnostic:</strong> compatible with many architectures; performance depends on data quality and context.</li>
+        <li><strong>Downstream usage:</strong> organizations may use telemetry outputs inside internal processes (including training or optimization), but H2E itself is an evaluator/telemetry layer.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> H2E™ · HER2NI Evaluation — Tbilisi, Georgia</div>
+      <div>
+        Protocol origin:
+        <a href="https://her2ni.org" target="_blank" rel="noopener noreferrer">HER2NI Research</a>
+        ·
+        <a href="https://zenodo.org/records/17844407" target="_blank" rel="noopener noreferrer">HER2NI v1.0 (Zenodo)</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
