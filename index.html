@@ -335,6 +335,38 @@
       border-top: 1px solid rgba(15, 23, 42, 0.9);
     }
     footer a { color: var(--accent); }
+
+.access-block {
+  margin-top: 10px;
+}
+
+.access-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.access-meta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Mobile refinements */
+@media (max-width: 640px) {
+  .access-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
   </style>
 </head>
 
@@ -385,18 +417,15 @@
           <strong>H<span style="font-size:11px;">s</span> ≈ 0.88 &nbsp;</strong>
         </div>
 
-        <div class="header-proto">
-          <div class="header-proto__title">Access</div>
-          <div class="header-proto__meta">
-            <a class="btn btn-primary"
-               href="mailto:licensing@her2ni.com?subject=H2E%20License%20Request&body=Org:%0AUse-case:%0ADeployment:%0AModels:%0AData%20type%20(text%2Fmulti-agent%2Ftools):%0AConstraints%20(security%2Fair-gap%2FPII):%0ATimeline:%0A">
-               Request License
-            </a>
-            <span class="sep">·</span>
-            <span>Evaluation kit</span>
-            <span class="sep">·</span>
-            <span>Private distribution</span>
-          </div>
+      <div class="access-block">
+        <div class="access-label">HER2NI Evaluation ACCESS</div>
+
+        <a class="btn btn-primary" href="mailto:licensing@her2ni.com?subject=H2E%20License%20Request">
+          REQUEST LICENSE
+        </a>
+
+        <div class="access-meta">
+          Evaluation kit · Private distribution
         </div>
       </div>
     </header>
