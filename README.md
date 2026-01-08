@@ -1,6 +1,6 @@
-# H2E™ — HER2NI Evaluation
+# H2E — HER2NI Evaluation
 
-**H2E™** is the licensed reference implementation for **HER2NI evaluation**:  
+**H2E** is the licensed reference implementation for **HER2NI evaluation**:  
 an interaction-level telemetry and analysis suite for detecting drift, instability,
 and collapse in multi-turn human–AI and agentic systems.
 
@@ -11,7 +11,7 @@ It is distributed privately under license.
 
 ## What This Is
 
-H2E™ operationalizes the HER2NI research protocol as a **practical evaluation tool**.
+H2E operationalizes the HER2NI research protocol as a **practical evaluation tool**.
 
 It provides:
 - interaction-trajectory scoring (not point outputs)
@@ -20,7 +20,7 @@ It provides:
 - drift, volatility, and collapse detection
 - reproducible audit artifacts (JSON / CBOR)
 
-H2E™ is designed for:
+H2E is designed for:
 - AI safety & evaluation teams
 - red-teaming and oversight groups
 - agent runtime and platform teams
@@ -31,7 +31,7 @@ H2E™ is designed for:
 
 ## What This Is Not
 
-H2E™ is **not**:
+H2E is **not**:
 - a model training method
 - a weight-level alignment technique
 - a control or enforcement system
@@ -39,7 +39,7 @@ H2E™ is **not**:
 - a diagnostic or clinical tool
 - an automatic certification authority
 
-H2E™ produces **descriptive telemetry**.
+H2E produces **descriptive telemetry**.
 Interpretation and action remain the responsibility of the user or institution.
 
 ---
@@ -49,10 +49,10 @@ Interpretation and action remain the responsibility of the user or institution.
 - **HER2NI** is the public, model-agnostic research protocol  
   documenting interaction-level coherence metrics and theory.
 
-- **H2E™** is the **official reference implementation** of that protocol for evaluation use.
+- **H2E** is the **official reference implementation** of that protocol for evaluation use.
 
 Research specifications, papers, and DOIs live at:  
-https://her2ni.org
+https://her2ni.ai
 
 This repository does **not** replace or redefine the public protocol.
 
@@ -60,7 +60,7 @@ This repository does **not** replace or redefine the public protocol.
 
 ## Licensing
 
-H2E™ is **licensed software**.
+H2E is **licensed software**.
 
 A license grants:
 - access to the evaluator package
@@ -76,7 +76,7 @@ A license does **not** grant:
 - any medical or regulatory approval
 
 For licensing inquiries:
-licensing@her2ni.com
+licensing@her2.ai
 
 ---
 
@@ -94,6 +94,19 @@ please contact the maintainers.
 
 ---
 
+## Interpretation Notes
+
+H2E v0.1 is intentionally conservative.
+
+Signals are expected to fire infrequently.  
+Absence of drift or collapse should not be interpreted as absence of risk,
+only as absence of *observable instability under the current telemetry model*.
+
+This behavior is deliberate and appropriate for exploratory evaluation,
+pilot deployments, and safety research contexts.
+
+---
+
 ## Status
 
 - Current phase: **Evaluation & pilot deployments**
@@ -102,4 +115,4 @@ please contact the maintainers.
 
 ---
 
-© HER2NI / H2E™ — Tbilisi, Georgia  
+© HER2NI / H2E — Tbilisi, Georgia  
