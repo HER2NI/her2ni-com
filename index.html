@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>H2E — HER2NI Evaluation</title>
+  <title>HER₂™ — Forensic Evidence System for AI</title>
 
   <!-- Basic SEO -->
-  <meta name="description" content="H2E (HER2NI Evaluation) is the official implementation suite for HER2NI: interaction-level coherence telemetry for drift, instability, and collapse detection in human–AI and agentic systems." />
+  <meta name="description" content="HER₂™ is a forensic evidence system for AI: recomputable, non-normative integrity records of LLM and agent interaction trajectories for audit, litigation, and due diligence." />
   <meta name="author" content="HER2NI" />
   <link rel="canonical" href="https://her2.ai/" />
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/her2ni_favicon_32.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="assets/her2ni_symbol_128.png" />
-  <link rel="icon" type="image/png" sizes="256x256" href="assets/her2ni_symbol_256.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/her2ni_symbol_512.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/her_helix_32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/her_helix_64.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="assets/her_helix_128.png" />
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/her_helix_256.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/her_helix_512.png" />
+  <link rel="apple-touch-icon" href="assets/her_helix_256.png" />
 
   <style>
     :root {
@@ -54,7 +56,7 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
       gap: 12px;
     }
 
@@ -65,6 +67,9 @@
       text-transform: uppercase;
       color: var(--accent);
       opacity: 0.9;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .header-symbol {
@@ -74,28 +79,37 @@
       filter: drop-shadow(0 0 6px rgba(79, 209, 197, 0.25));
     }
 
+    .hero-mark {
+      width: 64px;
+      height: 64px;
+      opacity: 1;
+      filter: drop-shadow(0 0 24px rgba(79, 209, 197, 0.18));
+      border-radius: 14px;
+      align-self: flex-end;
+    }
+    @media (max-width: 900px) {
+      .hero-mark { display: none; }
+    }
+
     .brand-title {
-      font-size: 21px;
-      letter-spacing: 0.04em;
-      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+      font-weight: 650;
       color: #e5e7eb;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      line-height: 1.25;
     }
 
     .brand-subrow { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
-    .subtitle { font-size: 14px; color: var(--text-muted); }
+    .subtitle { font-size: 14px; color: var(--text-muted); line-height: 1.6; max-width: 760px; }
 
     .header-right {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 8px;
+      gap: 10px;
       text-align: right;
       margin-top: 6px;
-      padding-top: 22px;
+      padding-top: 18px;
     }
 
     .header-tag {
@@ -113,52 +127,53 @@
       box-shadow: var(--shadow-soft);
     }
 
-    .brand .header-tag { margin-top: 12px; box-shadow: none; align-self: flex-start; }
-
     .dot {
       width: 8px; height: 8px; border-radius: 999px;
       background: radial-gradient(circle at 30% 30%, #6ee7b7 0, #22c55e 40%, #4b5563 100%);
       box-shadow: 0 0 10px rgba(52, 211, 153, 0.75);
     }
 
-    .inline-metrics {
-      font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-    }
-    .inline-metrics strong { color: var(--accent); }
-
-    .header-proto {
-      margin-top: 6px;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       padding: 10px 14px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(79, 209, 197, 0.35);
-      background: rgba(15, 23, 42, 0.55);
-      box-shadow: var(--shadow-soft);
-      display: inline-flex;
-      flex-direction: column;
-      gap: 4px;
-      max-width: 420px;
-    }
-    .header-proto__title {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #cbd5f5;
-    }
-    .header-proto__meta {
+      background: rgba(15, 23, 42, 0.65);
+      color: #e5e7eb;
       font-size: 12px;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+      white-space: nowrap;
     }
-    .header-proto__meta .sep { opacity: 0.6; }
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(45, 212, 191, 0.7);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+      background: rgba(15, 23, 42, 0.75);
+      text-decoration: none;
+    }
+    .btn-primary {
+      border-color: rgba(45, 212, 191, 0.85);
+      background: rgba(79, 209, 197, 0.12);
+      color: #e0fdf7;
+    }
+    .btn-primary:hover { background: rgba(79, 209, 197, 0.16); }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
 
     .grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1.1fr);
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
       gap: 28px;
       align-items: stretch;
       margin-bottom: 26px;
@@ -167,7 +182,9 @@
     @media (max-width: 900px) {
       header { flex-direction: column; align-items: flex-start; }
       .header-right { align-items: flex-start; text-align: left; padding-top: 0; margin-top: 16px; }
+      .hero-cta { justify-content: flex-start; }
       .grid { grid-template-columns: minmax(0, 1fr); }
+      .btn { width: 100%; }
     }
 
     .card {
@@ -179,21 +196,19 @@
       padding: 24px 24px 22px;
       box-shadow: var(--shadow-soft);
       backdrop-filter: blur(16px);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
     }
-
     .card-alt {
       background: radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 55%),
                   linear-gradient(145deg, #050814, #020309);
     }
-
     .card:hover, .section:hover {
       transform: translateY(-1px);
       border-color: rgba(148, 163, 184, 0.55);
       box-shadow: 0 24px 55px rgba(15, 23, 42, 0.85);
     }
 
-    .card-header { margin-bottom: 16px; }
+    .card-header { margin-bottom: 14px; }
     .card-title { font-size: 19px; font-weight: 650; line-height: 1.4; color: #e5e7eb; }
     .card-subtitle { margin-top: 10px; font-size: 13px; color: var(--text-muted); line-height: 1.65; }
 
@@ -207,6 +222,16 @@
       background: var(--accent-pill);
       border-color: rgba(45, 212, 191, 0.8);
       color: #e0fdf7;
+    }
+
+    .section {
+      margin-top: 16px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 20px 22px 18px;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
     }
 
     .section-heading {
@@ -223,7 +248,7 @@
     .list li {
       position: relative;
       padding-left: 14px;
-      margin-top: 6px;
+      margin-top: 8px;
       font-size: 13px;
       color: var(--text-muted);
       line-height: 1.55;
@@ -237,10 +262,40 @@
       font-size: 14px;
     }
 
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px) {
+      .panel-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+    .panel {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+    }
+    .panel h3 {
+      font-size: 14px;
+      font-weight: 650;
+      color: #e5e7eb;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .panel p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+    .panel p strong { color: #e5e7eb; font-weight: 600; }
+
     .links {
-      margin-top: 18px;
+      margin-top: 16px;
       border-top: 1px dashed rgba(148, 163, 184, 0.35);
-      padding-top: 14px;
+      padding-top: 12px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 10px;
@@ -251,77 +306,6 @@
     .link-label.primary { color: #e5e7eb; font-weight: 600; }
     .link-value a { color: var(--accent); text-decoration: none; }
     .link-value a:hover { text-decoration: underline; }
-
-    .section {
-      margin-top: 16px;
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-soft);
-      padding: 20px 22px 18px;
-      box-shadow: var(--shadow-soft);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
-    }
-
-    .section-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
-      gap: 18px;
-      margin-top: 16px;
-    }
-    @media (max-width: 900px) { .section-grid { grid-template-columns: minmax(0, 1fr); } }
-
-    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-    .pill {
-      font-size: 11px;
-      padding: 6px 11px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: #e5e7eb;
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(79, 209, 197, 0.35);
-      background: rgba(15, 23, 42, 0.65);
-      color: #e5e7eb;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
-    }
-    .btn:hover {
-      transform: translateY(-1px);
-      border-color: rgba(45, 212, 191, 0.7);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.65);
-      background: rgba(15, 23, 42, 0.75);
-      text-decoration: none;
-    }
-    .btn-primary {
-      border-color: rgba(45, 212, 191, 0.85);
-      background: rgba(79, 209, 197, 0.12);
-      color: #e0fdf7;
-    }
-    .btn-primary:hover { background: rgba(79, 209, 197, 0.16); }
-
-    .fineprint {
-      margin-top: 10px;
-      font-size: 12px;
-      line-height: 1.6;
-      color: rgba(160, 174, 192, 0.92);
-    }
 
     footer {
       margin-top: 30px;
@@ -336,37 +320,12 @@
     }
     footer a { color: var(--accent); }
 
-.access-block {
-  margin-top: 10px;
-}
-
-.access-label {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 6px;
-}
-
-.access-meta {
-  margin-top: 6px;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-/* Mobile refinements */
-@media (max-width: 640px) {
-  .access-block {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
+    .fineprint {
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(160, 174, 192, 0.92);
+    }
   </style>
 </head>
 
@@ -376,49 +335,34 @@
     <header>
       <div class="brand">
         <div class="brand-label">
-          <img src="assets/her2ni_symbol_128.png" alt="HER2NI symbol" class="header-symbol" />
-          H2E · HER2NI EVALUATION
+          <img src="assets/her_helix_128.png" alt="HER helix symbol" class="header-symbol" />
+          HER₂
         </div>
 
-        <div class="brand-title">
-          Official reference implementation for HER2NI evaluation
-        </div>
+        <div class="brand-title">HER₂™ — Forensic Evidence System for Artificial Intelligence</div>
 
         <div class="brand-subrow">
           <div class="subtitle">
-            Interaction-level coherence telemetry for drift, instability, and collapse detection.
+            Recomputable, non-normative integrity records for LLM and agent interaction trajectories — designed for audit, litigation, and due diligence.
           </div>
-        </div>
-
-        <div class="brand-subrow" style="margin-top:4px;">
-          <div class="subtitle" style="font-size:12px; opacity:0.85;">
-            Commercial release: evaluator tooling + reference pipelines for HER2NI metrics (C<sub>s</sub>, S<sub>s</sub>, H<sub>s</sub>).
-          </div>
-        </div>
-
-        <div class="header-tag">
-          <span class="dot"></span>
-          OFFICIAL IMPLEMENTATION
         </div>
 
         <div class="brand-subrow" style="margin-top:10px;">
-          <div class="subtitle" style="font-size:12px; opacity:0.92;">
-            Protocol origin: <a href="https://her2ni.ai" target="_blank" rel="noopener noreferrer">HER2NI Research (her2ni.ai)</a>
-            <span style="opacity:0.6;">(public specs &amp; DOIs)</span>
+          <div class="header-tag">
+            <span class="dot"></span>
+            PATENT PENDING · PRIVATE PILOTS NOW AVAILABLE
           </div>
         </div>
       </div>
 
       <div class="header-right">
-      <div class="access-block">
-        <div class="access-label">HER2NI Evaluation ACCESS</div>
-
-        <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=H2E%20License%20Request">
-          REQUEST LICENSE
-        </a>
-
-        <div class="access-meta">
-          Evaluation kit · Private distribution
+        <div class="hero-cta">
+          <a class="btn" href="mailto:licensing@her2.ai?subject=Request%20HER%20Evidence%20Pack%20PDF">Get Single Page PDF</a>
+          <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=HER₂%20Evidence%20Pack%20Pilot%20Request">Request Pilot</a>
+        <img src="assets/her_helix_256.png" alt="HER helix" class="hero-mark" />
+        </div>
+        <div class="fineprint" style="max-width:460px;">
+          HER₂™ produces evidence artifacts. It does not modify model weights, suppress outputs, or certify compliance unless separately contracted.
         </div>
       </div>
     </header>
@@ -428,302 +372,233 @@
       <!-- Left: What it is -->
       <article class="card">
         <div class="card-header">
-          <h1 class="card-title">H2E: HER2NI Evaluation</h1>
+          <h1 class="card-title">What HER₂™ Delivers</h1>
           <p class="card-subtitle">
-            H2E is the official implementation suite that operationalizes HER2NI as an
-            <strong>interaction-trajectory evaluator</strong>—a scoring and analysis layer that
-            tracks stability and drift over multi-turn exchanges (human–AI, agent–agent, or mixed).
+            HER₂™ creates a durable evidence layer for AI interactions: structured records that bind declared inputs, outputs, evaluator context, and provenance metadata into a recomputable artifact.
+            The goal is simple: preserve <em>what happened</em>, under <em>which conditions</em>, so independent parties can verify and reconstruct behavior later.
           </p>
 
           <div class="badge-row">
-            <span class="badge-accent">
-              Interaction Telemetry (C<span style="font-size:11px;">s</span>, S<span style="font-size:11px;">s</span>, H<span style="font-size:11px;">s</span>) + H<span style="font-size:11px;">s</span>(t)
-            </span>
-          </div>
-
-          <div class="badge-row">
-            <span class="badge">Drift &amp; Collapse Detection</span>
-            <span class="badge">Model-Agnostic</span>
-            <span class="badge">Early Warning Signals</span>
+            <span class="badge-accent">Recomputable Integrity Records</span>
+            <span class="badge">Non-Normative (Evidence-Only)</span>
+            <span class="badge">Cross-Evaluator</span>
+            <span class="badge">Temporal Causality</span>
           </div>
         </div>
 
-        <div>
-          <div class="section-heading">What H2E Produces</div>
-          <ul class="list">
-            <li><strong>Per-turn metrics:</strong> C<sub>s</sub>, S<sub>s</sub>, H<sub>s</sub> (optionally vector-valued internally).</li>
-            <li><strong>Trajectory curves:</strong> H<sub>s</sub>(t) and derived features (volatility, trend, collapse events).</li>
-            <li><strong>Event flags:</strong> drift onset, contradiction clustering, instability spikes, recovery signatures.</li>
-            <li><strong>Audit artifacts:</strong> JSON/CBOR telemetry packets + reproducible summary reports.</li>
-          </ul>
+        <div class="section-heading">What it produces</div>
+        <ul class="list">
+          <li><strong>Integrity records:</strong> structured JSON evidence objects for interaction trajectories.</li>
+          <li><strong>Cross-evaluator evidence:</strong> parallel records across evaluators without adjudication.</li>
+          <li><strong>Temporal causality:</strong> ordered lineage across time (no overwrites; append-only).</li>
+          <li><strong>Evidence bundles:</strong> signed bundles with manifest + recompute instructions.</li>
+        </ul>
 
-          <div class="section-heading" style="margin-top:14px;">What H2E Does Not Do</div>
-          <ul class="list">
-            <li><strong>Not a diagnostic or clinical tool.</strong> No health inference, no patient claims.</li>
-            <li><strong>Not a model or training method by itself.</strong> H2E is telemetry; it can be used downstream, but it does not prescribe weights.</li>
-            <li><strong>Not a truth-judger.</strong> It measures stability and drift, not correctness or ideology.</li>
-            <li><strong>Not an enforcement system.</strong> Any intervention remains the user’s or institution’s responsibility.</li>
-          </ul>
-        </div>
+        <div class="section-heading" style="margin-top:14px;">What it does not do</div>
+        <ul class="list">
+          <li><strong>No output correction:</strong> HER₂™ does not regenerate or “fix” model responses.</li>
+          <li><strong>No scoring authority:</strong> no certification, ranking, or compliance determination by default.</li>
+          <li><strong>No model lock-in:</strong> works offline/CI/runtime; vendor-agnostic evidence layer.</li>
+        </ul>
 
         <div class="links">
           <div>
-            <div class="link-label primary">Protocol (public)</div>
+            <div class="link-label primary">Research origin (HER2NI)</div>
             <div class="link-value">
-              <a href="https://her2ni.ai" target="_blank" rel="noopener noreferrer">her2ni.ai — research &amp; specifications</a>
+              <a href="https://her2ni.ai" target="_blank" rel="noopener noreferrer">HER2NI Research (her2ni.ai)</a>
             </div>
           </div>
 
           <div>
-            <div class="link-label primary">Protocol paper (Zenodo)</div>
+            <div class="link-label primary">HER2NI Protocol v1.0 (DOI)</div>
             <div class="link-value">
-              <a href="https://zenodo.org/records/17844407" target="_blank" rel="noopener noreferrer">zenodo.org/records/17844407</a>
+              <a href="https://doi.org/10.5281/zenodo.17844407" target="_blank" rel="noopener noreferrer">doi.org/10.5281/zenodo.17844407</a>
             </div>
           </div>
 
           <div class="link-divider"></div>
 
           <div>
-            <div class="link-label">Licensing</div>
-            <div class="link-value">
-              <a href="#licensing">Commercial licensing terms →</a>
-            </div>
+            <div class="link-label">Contact</div>
+            <div class="link-value"><a href="mailto:licensing@her2.ai">licensing@her2.ai</a></div>
           </div>
 
           <div>
-            <div class="link-label">Contact</div>
-            <div class="link-value">
-              <a href="mailto:licensing@her2.ai">licensing@her2.ai</a>
-            </div>
+            <div class="link-label">Scope</div>
+            <div class="link-value"><a href="#buyers">Who uses HER₂™ →</a></div>
           </div>
         </div>
       </article>
 
-      <!-- Right: Who it’s for + value -->
+      <!-- Right: Evidence Pack -->
       <article class="card card-alt">
         <div class="card-header">
-          <h2 class="card-title">Built for Evaluation &amp; Safety Teams</h2>
+          <h2 class="card-title">HER₂™ Evidence Pack (Pilot)</h2>
           <p class="card-subtitle">
-            H2E is designed for teams that need <strong>interaction-level observability</strong>:
-            early instability detection, drift characterization, and reproducible audit artifacts
-            across models and deployments.
+            A narrow, procurement-friendly bundle for teams that need independent reconstruction capability without changing their models.
           </p>
         </div>
 
-        <div>
-          <div class="section-heading">Primary Users</div>
-          <ul class="list">
-            <li>AI labs (safety, eval, red-teaming).</li>
-            <li>Model hosting platforms &amp; agentic runtime teams.</li>
-            <li>Applied research orgs and oversight groups.</li>
-            <li>Journalism / investigations units auditing AI-mediated systems.</li>
-            <li>Universities running human–AI interaction studies.</li>
-          </ul>
-        </div>
+        <div class="section-heading">Includes</div>
+        <ul class="list">
+          <li>Evidence schema (integrity record format)</li>
+          <li>Bundle manifest + signing + verification flow</li>
+          <li>Recompute / replay instructions</li>
+          <li>Cross-evaluator & temporal lineage templates</li>
+        </ul>
 
-        <div style="margin-top:14px;">
-          <div class="section-heading">Why Teams License H2E</div>
-          <ul class="list">
-            <li><strong>Time-to-signal:</strong> deploy a telemetry evaluator without inventing the schema + scoring structure from scratch.</li>
-            <li><strong>Comparability:</strong> stable naming + report formats for internal and external communication.</li>
-            <li><strong>Reproducibility:</strong> standard packets + deterministic report generation for audit trails.</li>
-            <li><strong>Downstream utility:</strong> outputs can feed internal QA, monitoring, gatekeeping, or research loops.</li>
-          </ul>
-        </div>
+        <div class="section-heading" style="margin-top:14px;">Delivery</div>
+        <ul class="list">
+          <li>Private distribution (pilot license)</li>
+          <li>Runs offline / CI / agent runtime</li>
+          <li>JSON-first artifacts</li>
+        </ul>
 
-        <div class="cta-row">
-          <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=H2E%20License%20Request">Request License</a>
-          <a class="btn" href="mailto:licensing@her2.ai?subject=H2E%20Pilot%20%2F%20Evaluation%20Kit">Ask for Pilot Kit</a>
-          <a class="btn" href="#pricing">View Tiers</a>
+        <div class="section-heading" style="margin-top:14px;">Buyer Panels</div>
+        <ul class="list">
+          <li>Venture Capital / Private Equity</li>
+          <li>Banks / Fintech / Insurers</li>
+          <li>Audit & Compliance Firms</li>
+          <li>Litigation / Expert Witness</li>
+          <li>Insurance Underwriters</li>
+        </ul>
+
+        <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
+          <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=HER₂%20Evidence%20Pack%20Pilot%20Request">Request Pilot</a>
+          <a class="btn" href="mailto:licensing@her2.ai?subject=Request%20NDA%20(optional)%20—%20HER%20Pilot">Request NDA (optional)</a>
         </div>
 
         <p class="fineprint">
-          H2E is delivered privately (licensed). The HER2NI protocol remains publicly documented on her2ni.ai.
+          <strong>Pilots are scoped to evidence generation and verification only.
+          Any compliance assessment or expert report is a separate engagement.</strong>
         </p>
       </article>
+    </section><!-- /grid -->
+
+    <!-- Buyer panels -->
+    <section class="section" id="buyers">
+      <div class="section-heading">Who uses HER₂™</div>
+      <p class="body-text">
+        HER₂™ is built for organizations that need <strong>independent reconstruction of AI behavior</strong> — where dashboards, vendor logs, and post-hoc explanations are not enough.
+      </p>
+
+      <div class="panel-grid">
+        <div class="panel">
+          <h3>Venture Capital / Private Equity</h3>
+          <p><strong>Your world:</strong> You assess AI companies fast, using demos and claims.</p>
+          <p><strong>Missing capability:</strong> durable proof of model behavior during diligence.</p>
+          <p><strong>HER₂™ delivers:</strong> recomputable evidence artifacts preserving exactly how a system behaved under defined conditions.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Banks, Fintechs, Insurers</h3>
+          <p><strong>Your world:</strong> AI is deployed where decisions must be defensible.</p>
+          <p><strong>Missing capability:</strong> forensic reconstruction for audits and disputes.</p>
+          <p><strong>HER₂™ delivers:</strong> non-normative interaction evidence you can verify and replay independently.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Audit &amp; Compliance Firms</h3>
+          <p><strong>Your world:</strong> You review controls and governance frameworks.</p>
+          <p><strong>Missing capability:</strong> independent reconstruction of model behavior.</p>
+          <p><strong>HER₂™ delivers:</strong> immutable evidence records decoupled from vendors and execution environments.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Litigation Support &amp; Expert Witness</h3>
+          <p><strong>Your world:</strong> AI disputes require neutral, inspectable records.</p>
+          <p><strong>Missing capability:</strong> court-ready reconstruction without vendor control.</p>
+          <p><strong>HER₂™ delivers:</strong> temporal lineage + recomputation paths for adversarial review.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Insurance Underwriters</h3>
+          <p><strong>Your world:</strong> You price risk and investigate incidents.</p>
+          <p><strong>Missing capability:</strong> post-incident reconstruction of AI behavior.</p>
+          <p><strong>HER₂™ delivers:</strong> consistent evidence artifacts for loss analysis and recurrence assessment.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Policy Labs &amp; Think Tanks</h3>
+          <p><strong>Your world:</strong> You evaluate governance proposals and AI accountability.</p>
+          <p><strong>Missing capability:</strong> an evidence substrate that doesn’t interfere with models.</p>
+          <p><strong>HER₂™ delivers:</strong> verifiable records for research, oversight, and standards work.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
+        <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=HER₂%20Evidence%20Pack%20Pilot%20Request">Request Pilot</a>
+        <a class="btn" href="#how">How it works →</a>
+      </div>
     </section>
 
-    <!-- Mid: What it measures -->
-    <section class="section">
-      <div class="section-heading">H2E Signal Model</div>
+    <!-- How it works -->
+    <section class="section" id="how">
+      <div class="section-heading">How it works</div>
 
-      <div class="pill-row">
-        <span class="pill">Trajectory (not point outputs)</span>
-        <span class="pill">Relational coherence</span>
-        <span class="pill">Drift geometry</span>
-        <span class="pill">Collapse / recovery markers</span>
-        <span class="pill">Model-agnostic</span>
+      <div class="badge-row" style="margin-top:0;">
+        <span class="badge">JSON-first</span>
+        <span class="badge">Signed bundle</span>
+        <span class="badge">Recompute instructions</span>
+        <span class="badge">Cross-evaluator optional</span>
+        <span class="badge">Temporal lineage</span>
       </div>
 
       <p class="body-text">
-        H2E evaluates <em>interaction stability</em> as a trajectory in observable space. It is compatible with
-        human–AI dialogue, multi-agent systems, and networked tool-using agents.
-        The core output is a time series H<sub>s</sub>(t) plus event markers and summaries that make
-        instability legible early—before failure propagates.
+        HER₂™ produces a chain of evidence by binding declared inputs, outputs, evaluator identity/config, and ordering metadata into a verifiable artifact.
+        Records are designed to be portable and inspectable without relying on vendor internals.
       </p>
 
-      <div class="section-grid">
-        <section class="section" style="margin-top: 14px;">
-          <div class="section-heading">Inputs</div>
-          <ul class="list">
-            <li><strong>Interaction trace:</strong> (u<sub>t</sub>, m<sub>t</sub>) pairs (text or multimodal references).</li>
-            <li><strong>Optional embeddings:</strong> model-agnostic vectors or similarity signals.</li>
-            <li><strong>Optional model-side signals:</strong> lightweight load indicators where available (vendor-agnostic).</li>
-            <li><strong>Optional metadata:</strong> timing, turn lengths, tool-call boundaries, agent IDs.</li>
-          </ul>
-          <p class="fineprint">
-            H2E works without internals. If internals are available, they can improve S<sub>s</sub> estimation, but are not required.
-          </p>
-        </section>
-
-        <section class="section" style="margin-top: 14px;">
-          <div class="section-heading">Outputs</div>
-          <ul class="list">
-            <li><strong>Telemetry packet:</strong> JSON (and/or CBOR) with per-turn metrics + provenance.</li>
-            <li><strong>Trajectory features:</strong> trend, volatility, drift onset, collapse flags.</li>
-            <li><strong>Summary report:</strong> reproducible text/JSON report for audit pipelines.</li>
-            <li><strong>Visualization hooks:</strong> optional adapters for dashboards and overlays.</li>
-          </ul>
-          <p class="fineprint">
-            Downstream: teams may use H2E outputs for monitoring, gating, evaluation studies, or internal optimization loops.
-          </p>
-        </section>
-      </div>
-    </section>
-
-    <!-- Licensing -->
-    <section class="section" id="licensing">
-      <div class="section-heading">Licensing (Commercial)</div>
-
-      <p class="body-text">
-        H2E is licensed software. Licensing is how we keep the protocol public while sustaining a high-quality
-        reference implementation, test vectors, documentation, and support.
-      </p>
-      <p class="fineprint">
-        H2E is a licensed reference implementation; it does not constitute third-party certification unless
-        explicitly contracted under a separate written evaluation agreement.
-      </p>
-
-      <div class="section-grid">
-        <section class="section" style="margin-top: 14px;">
-          <div class="section-heading">What a License Includes</div>
-          <ul class="list">
-            <li>Private distribution of the H2E evaluator package.</li>
-            <li>Reference telemetry schema (JSON/CBOR) + versioning.</li>
-            <li>Baseline scoring pipeline + collapse/drift detectors.</li>
-            <li>Example datasets + test vectors (as available).</li>
-            <li>Support channel for integration questions (tiered).</li>
-          </ul>
-        </section>
-
-        <section class="section" style="margin-top: 14px;">
-          <div class="section-heading">What It Does Not Grant</div>
-          <ul class="list">
-            <li>Exclusive rights to the HER2NI protocol or its public documents.</li>
-            <li>Ownership of the HER2NI name as a research designation (trademark applies to branding/offerings).</li>
-            <li>Any claim that using H2E is a safety certification by default.</li>
-            <li>Any medical/clinical permission (not a clinical product).</li>
-          </ul>
-        </section>
-      </div>
-
-      <p class="fineprint">
-        You can request the full license text via email. If you need a procurement-friendly PDF, ask and we’ll provide it.
-      </p>
-
-      <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=Request%20H2E%20License%20PDF">Request License PDF</a>
-        <a class="btn" href="mailto:licensing@her2.ai?subject=Request%20H2E%20NDA%20(optional)">Request NDA (optional)</a>
-      </div>
-    </section>
-
-    <!-- Pricing -->
-    <section class="section" id="pricing">
-      <div class="section-heading">Pricing Tiers (Initial)</div>
-
-      <p class="body-text">
-        Keep it simple. Start small. Scale when signal value is proven in the wild.
-      </p>
-
-      <div class="section-grid">
-        <section class="section" style="margin-top: 14px;">
-          <div class="section-heading">Starter (Pilot)</div>
-          <ul class="list">
-            <li>Single team / single project</li>
-            <li>Evaluator package + schema + baseline reports</li>
-            <li>Email support (asynchronous)</li>
-          </ul>
-          <p class="fineprint">
-            Best for: labs evaluating a single deployment, academic pilots, or small red-team groups.
-          </p>
-        </section>
-
-        <section class="section" style="margin-top: 14px;">
-          <div class="section-heading">Lab / Platform</div>
-          <ul class="list">
-            <li>Multiple projects</li>
-            <li>Integration guidance + report customization</li>
-            <li>Priority support</li>
-          </ul>
-          <p class="fineprint">
-            Best for: AI labs, hosting platforms, and agent runtime teams.
-          </p>
-        </section>
-
-        <section class="section" style="margin-top: 14px;">
-          <div class="section-heading">Enterprise / Oversight</div>
-          <ul class="list">
-            <li>Org-wide usage</li>
-            <li>Custom telemetry adapters + compliance artifacts</li>
-            <li>Optional training for evaluators</li>
-          </ul>
-          <p class="fineprint">
-            Best for: large-scale deployments, formal oversight programs, procurement-heavy orgs.
-          </p>
-        </section>
-
-        <section class="section" style="margin-top: 14px;">
-          <div class="section-heading">Custom</div>
-          <ul class="list">
-            <li>Bespoke integration constraints</li>
-            <li>Dedicated review of your evaluation pipeline</li>
-            <li>Optional on-site / secure environment support</li>
-          </ul>
-          <p class="fineprint">
-            Best for: air-gapped or high-security contexts, special compliance regimes.
-          </p>
-        </section>
-      </div>
-
-      <p class="fineprint">
-        Pricing is quoted case-by-case right now (so you don’t undercharge or overpromise). Email your use-case and constraints.
-      </p>
-
-      <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=H2E%20Pricing%20Quote%20Request">Request Quote</a>
-        <a class="btn" href="mailto:licensing@her2.ai?subject=H2E%20Pilot%20%2F%20Proof%20of%20Value">Pilot / Proof of Value</a>
-      </div>
-    </section>
-
-    <!-- Disclaimers -->
-    <section class="section">
-      <div class="section-heading">Important Notes</div>
+      <div class="section-heading" style="margin-top:14px;">Operational constraints</div>
       <ul class="list">
-        <li><strong>Not clinical:</strong> H2E is not a diagnostic system and must not be marketed or used as medical advice.</li>
-        <li><strong>Telemetry, not authority:</strong> metrics are descriptive; interpretation and decisions remain human responsibility.</li>
-        <li><strong>Evaluator-only:</strong> H2E does not modify model weights or execute actions in production systems.</li>
-        <li><strong>Model-agnostic:</strong> compatible with many architectures; performance depends on data quality and context.</li>
-        <li><strong>Downstream usage:</strong> organizations may use telemetry outputs inside internal processes (including training or optimization), but H2E itself is an evaluator/telemetry layer.</li>
+        <li>Works offline, in CI, or inside an agent runtime.</li>
+        <li>No external APIs required for the core evidence layer.</li>
+        <li>Does not require access to model weights or training data.</li>
+      </ul>
+
+      <p class="fineprint">
+        Note: LLM nondeterminism is expected. HER₂™ records what happened, and enables replay/recompute under declared conditions—without asserting correctness.
+      </p>
+    </section>
+
+    <!-- Notes -->
+    <section class="section">
+      <div class="section-heading">Important notes</div>
+      <ul class="list">
+        <li><strong>Evidence-only by default:</strong> no certification, ranking, or compliance determination unless separately contracted.</li>
+        <li><strong>No model interference:</strong> HER₂™ does not modify weights, suppress outputs, or enforce decisions.</li>
+        <li><strong>Not clinical:</strong> not a diagnostic system and not medical advice.</li>
+        <li><strong>Vendor-agnostic:</strong> designed to be independent of provider custody and proprietary logs.</li>
       </ul>
     </section>
 
+    <!-- closer -->
+    <p style="
+    font-size: 14.5px;
+    font-weight: 520;
+    text-shadow: 0 0 12px rgba(79, 209, 197, 0.12);
+    line-height: 1.6;
+    color: #e5e7eb;
+    max-width: 920px;
+    border-left: 2px solid rgba(79, 209, 197, 0.45);
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-top:16px;
+    margin-bottom: 16px;
+    ">
+    In litigation, an audit, an incident, or a dispute, narratives collapse — only recomputable records remain.<br>
+    Dashboards are not reliable evidence.<br>
+    HER₂™ turns the interaction trajectory into cryptographically verifiable evidence.<br>
+    HER₂™ is your evidence layer.
+     </p>
+
     <footer>
-      <div>© <span id="year"></span> H2E · HER2NI Evaluation — Tbilisi, Georgia</div>
+      <div>© <span id="year"></span> HER₂™ — Forensic Evidence System for AI · Tbilisi, Georgia</div>
       <div>
-        Protocol origin:
+        Research origin:
         <a href="https://her2ni.ai" target="_blank" rel="noopener noreferrer">HER2NI Research</a>
         ·
-        <a href="https://zenodo.org/records/17844407" target="_blank" rel="noopener noreferrer">HER2NI v1.0 (Zenodo)</a>
+        <a href="https://doi.org/10.5281/zenodo.17844407" target="_blank" rel="noopener noreferrer">HER2NI Protocol</a>
       </div>
     </footer>
   </main>
