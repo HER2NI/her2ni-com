@@ -1,14 +1,23 @@
-H2E™ — HER2NI Evaluation
-Copyright © 2025 HER2NI
+HER₂™ — Forensic Evidence System for Artificial Intelligence
+Copyright © 2026 HER2NI
 
 All rights reserved.
 
-This repository contains proprietary software and materials
-licensed separately by HER2NI.
+This repository contains proprietary materials related to the
+HER₂™ licensed system.
 
 No permission is granted to use, copy, modify, distribute,
-or sublicense this software except pursuant to a written
-license agreement with HER2NI.
+sublicense, or deploy any part of this repository except
+pursuant to an explicit written license agreement with HER2NI.
 
-For licensing inquiries:
-licensing@her2ni.com
+This repository does not grant any rights to the HER2NI research
+protocol, which remains publicly documented at:
+https://her2ni.ai
+
+HER₂™ is an evidence-layer system. It produces interaction
+integrity records and audit artifacts. It does not certify
+compliance, judge correctness, or enforce outcomes unless
+explicitly contracted.
+
+For licensing or pilot enquiries:
+licensing@her2.ai
