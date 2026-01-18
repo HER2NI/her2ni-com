@@ -94,7 +94,7 @@ Pilots are designed to answer one question:
 For a concise overview of scope and limitations, see:
 
 **HER₂™ — Forensic Evidence System for AI (Overview PDF)**  
-(`/assets/HER2_Overview.pdf`)
+(`/assets/HER2_Forensic_Evidence_Pack_Overview.pdf`)
 
 ---
 
