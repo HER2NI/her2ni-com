@@ -91,6 +91,18 @@
       .hero-mark { display: none; }
     }
 
+    .hero-mark-small {
+      width: 32px;
+      height: 32px;
+      opacity: 1;
+      filter: drop-shadow(0 0 24px rgba(79, 209, 197, 0.18));
+      border-radius: 14px;
+      align-self: flex-end;
+    }
+    @media (max-width: 450px) {
+      .hero-mark-small { display: none; }
+    }
+
     .brand-title {
       font-size: 22px;
       letter-spacing: 0.02em;
@@ -351,18 +363,18 @@
         <div class="brand-subrow" style="margin-top:10px;">
           <div class="header-tag">
             <span class="dot"></span>
-            PATENT PENDING · PRIVATE PILOTS NOW AVAILABLE
+            CASE-SCOPED ENGAGEMENTS AVAILABLE · PATENT-PENDING
           </div>
         </div>
       </div>
 
       <div class="header-right">
         <div class="hero-cta">
-          <a class="btn" href="assets/HER2_Forensic_Evidence_Pack_Overview.pdf" target="_blank">
-            Download PDF
+          <a class="btn" href="assets/HER2_Forensic_Evidence_Pack_Overview.pdf" target="_blank" style="text-align: center;">
+            Firm Brief<br> Download PDF
           </a>
-          <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=HER₂%20Evidence%20Pack%20Pilot%20Request">Request Pilot</a>
-        <img src="assets/her_helix_256.png" alt="HER helix" class="hero-mark" />
+          <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=HER₂%20Case-Scoped%20Evidence%20Pack%20Request" style="text-align: center;">Request<br> Engagement</a>
+          <img src="assets/her_helix_256.png" alt="HER helix" class="hero-mark" />
         </div>
         <div class="fineprint" style="max-width:460px;">
           HER₂™ produces evidence artifacts. It does not modify model weights, suppress outputs, or certify compliance unless separately contracted.
@@ -436,44 +448,53 @@
       <!-- Right: Evidence Pack -->
       <article class="card card-alt">
         <div class="card-header">
-          <h2 class="card-title">HER₂™ Evidence Pack (Pilot)</h2>
+          <h2 class="card-title">HER₂™ Case-Scoped Forensic Evidence Pack</h2>
           <p class="card-subtitle">
-            A narrow, procurement-friendly bundle for teams that need independent reconstruction capability without changing their models.
+            A licensed, case-scoped engagement for independent reconstruction of AI behavior —
+            without modifying models, evaluators, or runtime systems.
           </p>
         </div>
 
-        <div class="section-heading">Includes</div>
+        <div class="section-heading">Delivers</div>
         <ul class="list">
-          <li>Evidence schema (integrity record format)</li>
-          <li>Bundle manifest + signing + verification flow</li>
-          <li>Recompute / replay instructions</li>
-          <li>Cross-evaluator & temporal lineage templates</li>
+          <li>Recomputable interaction integrity records</li>
+          <li>Evaluator-agnostic evidence preservation</li>
+          <li>Temporal causality and lineage (append-only)</li>
+          <li>Signed manifests and verification material</li>
         </ul>
 
-        <div class="section-heading" style="margin-top:14px;">Delivery</div>
+        <div class="section-heading" style="margin-top:14px;">Scope</div>
         <ul class="list">
-          <li>Private distribution (pilot license)</li>
-          <li>Runs offline / CI / agent runtime</li>
-          <li>JSON-first artifacts</li>
+          <li>Licensed, case-scoped engagement</li>
+          <li>Offline / CI / agent-runtime compatible</li>
+          <li>JSON-first, vendor-neutral artifacts</li>
         </ul>
 
-        <div class="section-heading" style="margin-top:14px;">Buyer Panels</div>
+        <div class="section-heading" style="margin-top:14px;">Primary Users</div>
         <ul class="list">
-          <li>Venture Capital / Private Equity</li>
-          <li>Banks / Fintech / Insurers</li>
-          <li>Audit & Compliance Firms</li>
-          <li>Litigation / Expert Witness</li>
-          <li>Insurance Underwriters</li>
+          <li>Audit &amp; Compliance Firms</li>
+          <li>Litigation Support &amp; Expert Witness</li>
+          <li>Banks, Fintechs &amp; Insurers</li>
+          <li>Venture Capital &amp; Private Equity</li>
         </ul>
 
         <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
-          <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=HER₂%20Evidence%20Pack%20Pilot%20Request">Request Pilot</a>
-          <a class="btn" href="mailto:licensing@her2.ai?subject=Request%20NDA%20(optional)%20—%20HER%20Pilot">Request NDA (optional)</a>
+          <img src="assets/her_helix_256.png" alt="HER helix" class="hero-mark-small" />
+          <a class="btn btn-primary"
+            href="mailto:licensing@her2.ai?subject=HER₂%20Case-Scoped%20Forensic%20Evidence%20Pack%20Request">
+            Request Engagement
+          </a>
+          <a class="btn"
+            href="mailto:licensing@her2.ai?subject=Request%20NDA%20—%20HER₂%20Evidence%20Pack">
+            Request NDA
+          </a>
         </div>
 
         <p class="fineprint">
-          <strong>Pilots are scoped to evidence generation and verification only.
-          Any compliance assessment or expert report is a separate engagement.</strong>
+          <strong>
+            Engagements are evidence-only by default.
+            Any compliance opinion, certification, or expert report is a separate engagement.
+          </strong>
         </p>
       </article>
     </section><!-- /grid -->
@@ -529,8 +550,9 @@
         </div>
       </div>
 
+      <!-- Buyer panels CTA -->
       <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
-        <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=HER₂%20Evidence%20Pack%20Pilot%20Request">Request Pilot</a>
+        <a class="btn btn-primary" href="mailto:licensing@her2.ai?subject=HER₂%20Case-Scoped%20Evidence%20Pack%20Request">Request Engagement</a>
         <a class="btn" href="#how">How it works →</a>
       </div>
     </section>

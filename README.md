@@ -17,17 +17,16 @@ It does **not** contain the full private system source code.
 This repository provides:
 
 - a public overview of the HER₂™ system and its scope,
-- links to documentation and overview materials,
-- licensing and pilot engagement information,
-- coordination for institutional access.
+- links to evidence-pack documentation and overview materials,
+- licensing and engagement coordination for institutional access.
 
 It is intended for:
 
-- venture capital and private equity firms,
+- audit, risk, and forensic practices,
 - banks, fintechs, and insurers,
-- audit, compliance, and governance teams,
 - litigation support and expert witness firms,
-- insurance underwriters and policy labs.
+- venture capital and private equity due diligence teams,
+- governance, compliance, and policy organizations.
 
 Private system components are provided **only under license**.
 
@@ -37,16 +36,18 @@ Private system components are provided **only under license**.
 
 HER₂™ is an **evidence layer**, not a control system.
 
-At a high level, HER₂™:
+At a system level, HER₂™:
 
-- records interaction trajectories as immutable evidence artifacts,
-- binds inputs, outputs, evaluator context, and provenance metadata,
+- records AI interaction trajectories as immutable evidence artifacts,
+- binds declared inputs, outputs, evaluator context, and provenance metadata,
 - preserves temporal causality (append-only, no overwrite),
 - supports independent replay and recomputation,
-- produces signed evidence bundles suitable for adversarial review.
+- produces signed evidence bundles suitable for adversarial review,
+- preserves outputs from **internal, third-party, or reference evaluators**
+  without requiring adoption of HER₂™ evaluation logic.
 
 HER₂™ operates **without access to model weights or training data** and does not
-modify, tune, or suppress model outputs.
+modify, tune, suppress, or regenerate model outputs.
 
 ---
 
@@ -57,13 +58,13 @@ HER₂™ is intentionally constrained.
 It is **not**:
 
 - a model training or alignment method,
-- a compliance certification by default,
 - a control or enforcement system,
 - a correctness, truth, or ideology evaluator,
+- a safety certification or compliance authority by default,
 - a diagnostic or clinical tool.
 
 HER₂™ produces **evidence artifacts**, not judgments.  
-Interpretation and decision-making always remain human- or institution-governed.
+Interpretation and decision-making remain human- or institution-governed.
 
 ---
 
@@ -72,28 +73,37 @@ Interpretation and decision-making always remain human- or institution-governed.
 - **HER2NI** is the public, model-agnostic research protocol describing
   interaction-level coherence metrics and theory.
 - **HER₂™** is a licensed system built on the HER2NI protocol family,
-  extended for forensic integrity recording and evidentiary use.
+  extended for forensic integrity recording, provenance, and evidentiary use.
 
 HER2NI research materials, specifications, and DOIs are available at:  
 https://her2ni.ai
 
-This repository does **not** replace or redefine the HER2NI protocol.
+This repository does **not** redefine or replace the HER2NI protocol.
 
 ---
 
-## HER₂™ Pilot Access
+## HER₂™ Evidence Pack Engagements
 
-HER₂™ is currently available via **private pilot engagements**.
+HER₂™ is delivered via **case-scoped forensic evidence pack engagements**.
 
-Pilots are designed to answer one question:
+Each engagement is narrowly scoped to a defined matter, system, or incident and
+produces a **standalone forensic evidence bundle** suitable for independent
+inspection, recomputation, and expert analysis.
 
-> *Does preserving interaction trajectories as recomputable evidence
-> materially improve auditability, risk analysis, or dispute resolution
-> in your context?*
+Evidence packs may include:
 
-For a concise overview of scope and limitations, see:
+- interaction integrity records (structured JSON artifacts),
+- evaluator fingerprints and execution context,
+- temporal lineage and causal ordering,
+- provenance hashes and signing material,
+- recomputation and replay instructions.
 
-**HER₂™ — Forensic Evidence System for AI (Overview PDF)**  
+Evidence packs are **evidence-only** by default and do not assert certification,
+compliance, or regulatory determination unless explicitly contracted.
+
+For an overview of scope and limitations, see:
+
+**HER₂™ — Forensic Evidence Pack (Overview PDF)**  
 (`/assets/HER2_Forensic_Evidence_Pack_Overview.pdf`)
 
 ---
@@ -107,17 +117,17 @@ A license may grant access to:
 - private system components,
 - evidence schemas and manifests,
 - integrity and provenance tooling,
-- pilot-scoped evaluation materials,
-- integration guidance.
+- evaluator-agnostic evidence packaging,
+- integration and deployment guidance.
 
 A license does **not** grant:
 
 - ownership of the HER2NI protocol,
 - exclusivity over research designations,
 - certification or endorsement rights unless explicitly contracted,
-- any medical or regulatory approval.
+- medical, legal, or regulatory approval.
 
-For licensing or pilot enquiries:  
+For licensing or engagement enquiries:  
 **licensing@her2.ai**
 
 ---
@@ -127,7 +137,7 @@ For licensing or pilot enquiries:
 HER₂™ is distributed via:
 
 - direct license agreements,
-- controlled pilot deployments,
+- case-scoped forensic evidence engagements,
 - versioned releases to approved institutions.
 
 If you are viewing this repository without prior context,  
@@ -137,8 +147,8 @@ please contact the maintainers.
 
 ## Status
 
-- **Current phase:** Private pilots  
-- **Release:** v0.1 (evidence-layer focus)  
+- **Availability:** Licensed, case-scoped engagements  
+- **Release:** v0.1 (evidence-layer)  
 - **Roadmap:** By agreement
 
 ---
