@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>H.E.R — AI Resonance Lens · Labs</title>
+  <meta name="description" content="H.E.R — AI Resonance Lens. A live visualization layer for AI interaction dynamics. Runs locally." />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/her_helix_32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/her_helix_64.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="../assets/her_helix_128.png" />
+  <link rel="icon" type="image/png" sizes="256x256" href="../assets/her_helix_256.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../assets/her_helix_512.png" />
+  <link rel="apple-touch-icon" href="../assets/her_helix_256.png" />
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="brand">
+        <div class="brand-kicker">
+          <img src="../assets/her_helix_128.png" alt="HER helix symbol" class="header-symbol" />
+          &nbsp;H.E.R — AI Resonance Lens</div>
+        <div class="brand-title">Live visualization of Artificial Intelligence</div>
+        <div class="brand-sub">
+          Paste a multi-turn chat with AI to render a local resonance visualization example.<br>
+          <span class="muted">Metaphorical telemetry. Demo not linked to model-specific evaluation metrics.</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="header-actions-row">
+          <button id="btnRender" class="btn btnPrimary">Render</button>
+          <button id="btnIdle" class="btn">Idle Pulse</button>
+          <button id="btnExport" class="btn">Export</button>
+        </div>
+        <img src="../assets/her_helix_256.png" alt="HER helix" class="hero-mark" />
+      </div>
+    </header>
+
+    <section class="section" style="margin-bottom:16px;">
+      <div class="section-heading" style="margin-bottom:16px;">
+        H.E.R is primarily designed as a browser extension that runs beside AI chat interfaces.<br>
+        This page is a manual demo mode example of the extension.
+      </div>
+      <div style="margin-top:10px; display:flex; gap:16px; flex-wrap:wrap;">
+        <a class="btn btnPrimary" href="./her-extension/" target="_blank" rel="noopener noreferrer">Live Browser Extension</a>
+        <a class="btn" href="#manual">Use Manual Demo</a>
+      </div>
+      <p class="fineprint" style="margin-top:16px;">
+        Runs locally. No chat content is stored or transmitted.
+      </p>
+    </section>
+
+    <section class="grid">
+      <section class="panel" id="manual">
+        <div class="panel-title">AI Multi-turn chat</div>
+        <div class="panel-sub">Use <span class="mono">User:</span> and <span class="mono">Assistant:</span> labels. Blank lines okay.</div>
+
+        <textarea
+          id="chatInput"
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="off"
+          autocorrect="off"
+          placeholder="User: ...
+Assistant: ...
+
+Etc."></textarea>
+
+        <div class="row">
+          <label class="pill">
+            Center label
+            <select id="labelMode">
+              <option value="HER_DEFAULT" selected>H.E.R</option>
+              <option value="CUSTOM">Custom</option>
+            </select>
+          </label>
+
+          <label class="pill custom-slot" id="customLabelWrap" style="visibility:hidden;">
+            Custom name
+            <input id="customLabel" type="text" placeholder="e.g. MER" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="pill">
+            Memory influence
+            <input id="memoryInfluence" type="range" min="0" max="1" value="0.35" step="0.01" />
+            <span id="memoryVal" class="pillVal">0.35</span>
+          </label>
+
+          <label class="pill">
+            Geometry density
+            <input id="geoDensity" type="range" min="0" max="1" value="0.55" step="0.01" />
+            <span id="geoVal" class="pillVal">0.55</span>
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="pill">
+            State thresholds (ICE/WATER/AURORA)
+            <input id="t1" type="number" min="0" max="1" step="0.01" value="0.38" />
+            <input id="t2" type="number" min="0" max="1" step="0.01" value="0.68" />
+          </label>
+
+          <label class="pill">
+            Hysteresis
+            <input id="hys" type="number" min="0" max="0.2" step="0.01" value="0.06" />
+          </label>
+
+          <label class="pill">
+            <input id="autoExportToggle" type="checkbox" />
+            Auto-export best 3s
+          </label>
+        </div>
+
+        <div class="hint">
+          Tip: If you don’t have a labeled transcript, prefix turns with <span class="mono">User:</span> and <span class="mono">Assistant:</span>.
+        </div>
+      </section>
+
+      <section class="panel panelCanvas">
+        <div class="panel-title">H.E.R</div>
+        <div class="panel-sub">
+          Live render and exportable clip. <span class="muted">Runs locally.</span>
+        </div>
+
+        <div class="canvasWrap">
+          <canvas id="crystal" width="960" height="666"></canvas>
+          <div class="hud hudTop">
+            <div class="hudRow">
+              <span class="tag" id="stateTag">IDLE</span>
+              <span class="tag" id="htTag">Hₛ: — · Sₛ: —</span>
+              <span class="tag" id="turnTag">Turns: —</span>
+            </div>
+          </div>
+
+          <div class="hud hudBottom">
+            <div class="hudRow">
+              <span class="tag" id="memTag">Memory seed: —</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fineprint">
+          This visualization is a metaphorical coherence display (ICE → WATER → AURORA). It does not diagnose mental states, certify safety, or provide compliance determinations.
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> H.E.R™ · Patent pending · Tbilisi, Georgia</div>
+      <div>
+        Research origin:
+        <a href="https://her2ni.ai" target="_blank" rel="noopener noreferrer">HER2NI Research</a>
+        ·
+        <a href="https://doi.org/10.5281/zenodo.17844407" target="_blank" rel="noopener noreferrer">HER2NI Protocol</a>
+      </div>
+    </footer>
+    </main>
+
+  <script type="module" src="./labs.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.addEventListener("load", () => {
+      window.scrollTo(0, 0);
+    });
+  </script>
+</body>
+</html>
