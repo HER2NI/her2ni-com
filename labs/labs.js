@@ -27,6 +27,14 @@ const el = {
   autoExportToggle: document.getElementById("autoExportToggle"),
 };
 
+const btnCapture = document.getElementById("btnCapture");
+const shareButtons = [
+  document.getElementById("shareX"),
+  document.getElementById("shareIG"),
+  document.getElementById("shareTT"),
+  document.getElementById("shareLink"),
+].filter(Boolean);
+
 const customWrap = document.getElementById("customLabelWrap");
 const customInput = document.getElementById("customLabel");
 
@@ -149,6 +157,35 @@ el.btnExport.addEventListener("click", async () => {
     alert(`Export failed: ${e.message}`);
   }
 });
+
+const btnCapture = document.getElementById("btnCapture");
+const shareButtons = [
+  document.getElementById("shareX"),
+  document.getElementById("shareIG"),
+  document.getElementById("shareTT"),
+  document.getElementById("shareLink"),
+].filter(Boolean);
+
+if (btnCapture) {
+  btnCapture.addEventListener("click", async () => {
+    try {
+      // Capture = export a short clip (8s for now)
+      const blob = await recordWebM(el.canvas, 8000, 30);
+      const stamp = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+      downloadBlob(blob, `HER_Session_${stamp}.webm`);
+
+      // enable sharing after capture
+      for (const b of shareButtons) b.disabled = false;
+
+      // UI feedback
+      btnCapture.textContent = "Captured ✓";
+      btnCapture.disabled = true;
+      btnCapture.style.opacity = "0.85";
+    } catch (e) {
+      alert(`Capture failed: ${e.message}`);
+    }
+  });
+}
 
 // Label controls
 el.labelMode.addEventListener("change", () => {

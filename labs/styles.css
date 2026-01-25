@@ -201,8 +201,46 @@ canvas{
 
 #chatInput{
   min-height: 180px;
-  height: 180px;
+  height: 225px;
   resize: vertical;
+}
+
+.captureBar{
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.captureSub{
+  font-size: 12px;
+  color: rgba(160,174,192,.92);
+}
+
+.shareRow{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.shareBtn{
+  border:1px solid rgba(79,209,197,.25);
+  background:rgba(15,23,42,.55);
+  color:#e5e7eb;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+  opacity: 1;
+}
+
+.shareBtn:disabled{
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
 }
 
 .fineprint{margin-top:12px;font-size:12px;line-height:1.6;color:rgba(160,174,192,.92)}
