@@ -27,14 +27,6 @@ const el = {
   autoExportToggle: document.getElementById("autoExportToggle"),
 };
 
-const btnCapture = document.getElementById("btnCapture");
-const shareButtons = [
-  document.getElementById("shareX"),
-  document.getElementById("shareIG"),
-  document.getElementById("shareTT"),
-  document.getElementById("shareLink"),
-].filter(Boolean);
-
 const customWrap = document.getElementById("customLabelWrap");
 const customInput = document.getElementById("customLabel");
 
@@ -111,7 +103,7 @@ el.btnIdle.addEventListener("click", () => {
   stateMachine.state = "IDLE";
   el.stateTag.textContent = "IDLE";
   el.htTag.textContent = "Hs: — · Ss: —";
-  el.turnTag.textContent = "Turns: —";
+  el.turnTag.textContent = "TURNS: —";
   intro = 0;
   breath = 0;
   lastTurnIndex = -1;
@@ -145,7 +137,7 @@ el.btnRender.addEventListener("click", () => {
   captureTimeline = [];
   autoExportArmed = !!el.autoExportToggle?.checked;
 
-  el.turnTag.textContent = `Turns: ${parsed.turns.length}`;
+  el.turnTag.textContent = `TURNS: ${parsed.turns.length}`;
 });
 
 el.btnExport.addEventListener("click", async () => {
@@ -157,27 +149,6 @@ el.btnExport.addEventListener("click", async () => {
     alert(`Export failed: ${e.message}`);
   }
 });
-
-if (btnCapture) {
-  btnCapture.addEventListener("click", async () => {
-    try {
-      // Capture = export a short clip (8s for now)
-      const blob = await recordWebM(el.canvas, 8000, 30);
-      const stamp = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
-      downloadBlob(blob, `HER_Session_${stamp}.webm`);
-
-      // enable sharing after capture
-      for (const b of shareButtons) b.disabled = false;
-
-      // UI feedback
-      btnCapture.textContent = "Captured ✓";
-      btnCapture.disabled = true;
-      btnCapture.style.opacity = "0.85";
-    } catch (e) {
-      alert(`Capture failed: ${e.message}`);
-    }
-  });
-}
 
 // Label controls
 el.labelMode.addEventListener("change", () => {
@@ -845,7 +816,7 @@ function saveMemorySeed(seed) {
   try { localStorage.setItem(MEM_KEY, JSON.stringify(seed)); } catch {}
 }
 function updateMemHud() {
-  el.memTag.textContent = `Memory seed: bias=${(mem.bias||0).toFixed(2)} · vol=${(mem.vol||0).toFixed(2)}`;
+  el.memTag.textContent = `MEMORY SEED: bias=${(mem.bias||0).toFixed(2)} · vol=${(mem.vol||0).toFixed(2)}`;
 }
 
 function clamp01(x){ return Math.max(0, Math.min(1, x)); }
