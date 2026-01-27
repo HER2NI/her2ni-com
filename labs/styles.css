@@ -84,6 +84,7 @@ body{
   letter-spacing:.08em;
   cursor:pointer;
   transition:transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  text-align: center;
 }
 .btn:hover{transform:translateY(-1px);border-color:rgba(79,209,197,.8);box-shadow:var(--shadow)}
 .btnPrimary{background:rgba(79,209,197,.12);border-color:rgba(45,212,191,.9);color:#e0fdf7}
