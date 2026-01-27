@@ -158,14 +158,6 @@ el.btnExport.addEventListener("click", async () => {
   }
 });
 
-const btnCapture = document.getElementById("btnCapture");
-const shareButtons = [
-  document.getElementById("shareX"),
-  document.getElementById("shareIG"),
-  document.getElementById("shareTT"),
-  document.getElementById("shareLink"),
-].filter(Boolean);
-
 if (btnCapture) {
   btnCapture.addEventListener("click", async () => {
     try {
