@@ -8,3 +8,6 @@
 # macOS junk
 .DS_Store
 **/.DS_Store
+
+# never commit packaged extension zips
+*.zip
