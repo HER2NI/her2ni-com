@@ -2,6 +2,7 @@
 
 import { fbm2D } from "./noise.js";
 import { recordWebM, downloadBlob } from "./recorder.js";
+import { initHER, updateHERFromTurns, setHERLocked } from "./her_core.js";
 
 /** ---------------------------
  *  DOM
@@ -32,6 +33,11 @@ const customInput = document.getElementById("customLabel");
 
 const ctx = el.canvas.getContext("2d", { alpha: false });
 const W = el.canvas.width, H = el.canvas.height;
+
+initHER({
+  canvas: el.canvas,
+  hud: { stateTag: el.stateTag, hsTag: el.htTag, turnTag: el.turnTag, memTag: el.memTag },
+});
 
 /** ---------------------------
  *  Memory seed (localStorage)
@@ -110,29 +116,15 @@ el.btnIdle.addEventListener("click", () => {
   captureTimeline = [];
   autoExportArmed = false;
   exportController.active = false;
+  updateHERFromTurns([], { reset: true });
+  setHERLocked(false);
 });
 
 el.btnRender.addEventListener("click", () => {
   const text = el.input.value || "";
   parsed = parseTranscript(text);
-
-  // Features per turn (generic)
-  parsed.features = parsed.turns.map(t => featuresForTurn(t.text));
-
-  // H(t) = metaphorical “alignment / interaction coherence” (all turns)
-  parsed.ht = computeHTCurve(parsed.features, mem, Number(el.memoryInfluence.value));
-
-  // S(t) = “silicon effectiveness” proxy (assistant turns only)
-  parsed.st = computeSTCurve(parsed.turns);
-
-  // Geometry graph from full transcript (density slider)
-  graph = buildKeywordGraph(parsed.turns, Number(el.geoDensity.value));
-
-  mode = "RUN";
-  t = 0;
-  intro = 0;          // start in void, fade in
-  breath = 0;
-  lastTurnIndex = -1;
+  updateHERFromTurns(parsed.turns, { reset: true });
+  setHERLocked(false);
 
   captureTimeline = [];
   autoExportArmed = !!el.autoExportToggle?.checked;
@@ -166,7 +158,7 @@ if (customWrap) {
 /** ---------------------------
  *  Main loop
  * -------------------------- */
-requestAnimationFrame(loop);
+
 
 function loop(now) {
   const dt = Math.min(0.05, (now - lastRenderTs) / 1000);
@@ -183,8 +175,6 @@ function loop(now) {
 
   if (mode === "IDLE") renderIdle(t);
   else renderRun(t);
-
-  requestAnimationFrame(loop);
 }
 
 /** ---------------------------
