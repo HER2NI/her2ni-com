@@ -16,6 +16,7 @@ const CFG = {
 
 const SCALE_MIN = 0.92;
 const SCALE_MAX = 1.08;
+const MODE = "PROD";
 
 // ====== INTERNAL STATE ======
 let canvas, ctx, W, H;
@@ -132,12 +133,12 @@ export function getGraphCounts() {
 
 // ====== LOOP ======
 function loop(now) {
-  if ((now|0) % 2000 < 16) console.debug("HER_LOOP", (now|0));
+  if (MODE === "DEV" && (now|0) % 2000 < 16) console.debug("HER_LOOP", (now|0));
   const dt = Math.min(0.05, (now - lastTs) / 1000);
   lastTs = now;
   t += dt;
 
-  if (now - _dbgLast > 2000) {
+  if (MODE === "DEV" && now - _dbgLast > 2000) {
   _dbgLast = now;
   console.debug("HER_FRAME", Math.round(now));
   }
