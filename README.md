@@ -6,6 +6,11 @@ It produces **recomputable, non-normative integrity records** of LLM and agent
 interaction trajectories for audit, litigation, due diligence, and incident
 reconstruction.
 
+## License / Usage
+
+This repository is proprietary and provided for evaluation only. See `LICENSE`
+and `NOTICE`. No content logging; local-only.
+
 This repository serves as the **commercial coordination and access point** for
 HER₂™.  
 It does **not** contain the full private system source code.
@@ -152,5 +157,3 @@ please contact the maintainers.
 - **Roadmap:** By agreement
 
 ---
-
-© HER₂™ / HER2NI — Tbilisi, Georgia

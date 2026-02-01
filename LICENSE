@@ -1,23 +1,44 @@
-HER₂™ — Forensic Evidence System for Artificial Intelligence
-Copyright © 2026 HER2NI Research
+Proprietary Evaluation License v1.0
+H.E.R (Human–Emergent Resonance) / HER2NI Research
+Owner: Steve Black
 
-All rights reserved.
+1) Grant of Evaluation Rights
+You are granted a limited, non-exclusive, non-transferable license to view and
+use this software solely for internal evaluation, security review, or
+procurement review.
 
-This repository contains proprietary materials related to the
-HER₂™ licensed system.
+2) Prohibited Uses
+You may not:
+- redistribute, publish, or share this software or any portion of it;
+- host, exhibit, or provide any public demo or public access;
+- use it for any commercial or production purpose;
+- modify, adapt, translate, or create derivative works;
+- reverse engineer, decompile, or disassemble any portion of it.
 
-No permission is granted to use, copy, modify, distribute,
-sublicense, or deploy any part of this repository except
-pursuant to an explicit written license agreement with HER2NI Research.
+3) Termination
+Any breach of this license terminates all rights immediately. Upon termination,
+you must discontinue use and destroy all copies in your possession or control.
 
-This repository does not grant any rights to the HER2NI research
-protocol, which remains publicly documented at:
-https://her2ni.ai
+4) Ownership and Trademarks
+All intellectual property rights are retained by Steve Black / HER2NI Research.
+“H.E.R”, “HER2”, and “HER-NET” are trademarks or marks used in commerce by the
+Owner. No trademark rights are granted under this license.
 
-HER₂™ is an evidence-layer system. It produces interaction
-integrity records and audit artifacts. It does not certify
-compliance, judge correctness, or enforce outcomes unless
-explicitly contracted.
+5) Warranty Disclaimer
+This software is provided for evaluation only and is provided “AS IS,” without
+warranties or conditions of any kind, whether express, implied, or statutory,
+including any implied warranties of merchantability, fitness for a particular
+purpose, title, or non-infringement.
 
-For licensing enquiries:
-licensing@her2.ai
+6) Limitation of Liability
+To the maximum extent permitted by law, the Owner shall not be liable for any
+indirect, incidental, special, consequential, exemplary, or punitive damages,
+or for any loss of data, profits, revenue, or business opportunity, arising out
+of or related to the software or this license, even if advised of the
+possibility of such damages. The Owner’s total liability for any claim shall
+not exceed one hundred U.S. dollars (US$100).
+
+7) Governing Law and Venue
+This license is governed by the laws of Georgia (Sakartvelo), without regard to
+conflict of law principles. Any dispute shall be brought exclusively in the
+courts located in Georgia (Sakartvelo).

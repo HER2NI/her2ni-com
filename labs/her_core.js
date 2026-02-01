@@ -1,3 +1,6 @@
+/*
+ * © HER2NI / Steve Black. Proprietary — Evaluation Use Only. No redistribution without permission.
+ */
 /* her_core.js — H.E.R AI Resonance Lens core (extension)
    ES module. Imports noise locally. No server.
 */
